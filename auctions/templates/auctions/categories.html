@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+{% block body %}
+<form action="{% url 'categories' %}" method="POST" class="form-inline mx-5">
+    {% csrf_token %}
+    <select name="categories" class="form-control mr-3">
+        {% for category in categories %}
+        {% if category.id == listing.id %}
+        <option value="{{ category.id }}" selected>{{ category.category }}</option>
+        {% else %}
+        <option value="{{ category.id }}">{{ category.category }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">Filter</button>
+</form>
+
+<div class="listings_container">
+    {% for listing in listings %}
+    <div class="card mx-3" style="width: 18rem;">
+        <img src="{{ listing.photo }}" class="card-img-top" alt="{{ listing.title }}">
+        <div class="card-body">
+            <h5 class="card-title"> {{ listing.title }}</h5>
+            {% if listing.description|length > 50 %}
+            <p class="card-text">{{ listing.description|slice:"70" }} ...</p>
+            {% else %}
+            <p class="card-text">{{ listing.description }}</p>
+            {% endif %}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price: <strong>${{ listing.price }}</strong></li>
+            <li class="list-group-item"> Created by: <strong> {{ listing.created_by }}</strong></li>
+            <li class="list-group-item"> Created at: <small>{{ listing.created_at }}</small></li>
+        </ul>
+
+        <div class="card-body">
+            <a href="{% url 'listings' listing.id %}" class="card-link">Details</a>
+        </div>
+    </div>
+    {%empty%}
+    <h5 class="text-center text-secondary m-5">Not listing for ({{ listing.category }}) yet.</h5>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

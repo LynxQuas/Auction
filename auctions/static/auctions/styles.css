@@ -1,0 +1,37 @@
+body {
+    padding: 10px;
+}
+
+.listings_container { 
+    display: flex;
+    margin: 2rem;
+}
+
+.listings_comments { 
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.card-header{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listings_image { 
+    width: 50%;
+    height: 50vh;
+    object-fit: contain;
+}
+
+@media only screen and (max-width: 500px ){
+    .listings_container { 
+        flex-direction: column;
+        gap: 2rem;
+        
+    }
+
+    .listings_image { 
+        width: 100%;
+    }
+}

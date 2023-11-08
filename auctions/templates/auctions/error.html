@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+Error:
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="alert-danger">Sorry: {{ message }}</div>
+
+    {% if current_list %}
+
+    <form action="{% url 'listings' current_list.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary my-3">Ok</button>
+    </form>
+
+    {% endif %}
+</div>
+
+{% endblock %}

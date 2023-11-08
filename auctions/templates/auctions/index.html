@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>Active Listings</h2>
+<div class="listings_container">
+    {% for listing in listings %}
+    <div class="card mx-3" style="width: 18rem;">
+        <img src="{{ listing.photo }}" class="card-img-top" alt="{{ listing.title }}">
+        <div class="card-body">
+            <h5 class="card-title"> {{ listing.title }}</h5>
+            {% if listing.description|length > 50 %}
+            <p class="card-text">{{ listing.description|slice:"70" }} ...</p>
+            {% else %}
+            <p class="card-text">{{ listing.description }}</p>
+            {% endif %}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price: <strong>${{ listing.price }}</strong></li>
+            <li class="list-group-item"> Created by: <strong> {{ listing.created_by }}</strong></li>
+            <li class="list-group-item"> Created at: <small>{{ listing.created_at }}</small></li>
+        </ul>
+
+        <div class="card-body">
+            <a href="{% url 'listings' listing.id %}" class="card-link">Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
