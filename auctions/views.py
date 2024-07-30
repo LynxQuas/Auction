@@ -7,7 +7,6 @@ from django.urls import reverse
 
 from .models import *
 
-
 def index(request):
 
     listings = AuctionListings.objects.filter(status=True)
@@ -105,7 +104,7 @@ def listings(request, list_id):
         if comment_text:
             comment = Comments.objects.create(comment_by=request.user, comment=comment_text, listing=current_list)
             comment.save()
-        return HttpResponseRedirect(reverse("listings", args=(list_id, ))) 
+        return HttpResponseRedirect(reverse("listings", args=(list_id, )))    
     
     return render(request, "auctions/listings.html", { 
         "listings": current_list,
