@@ -43,4 +43,4 @@ Then open `http://127.0.0.1:8000`.
 This project is complete and is kept as part of my earlier Django projects.
 
 
-<h1>Project Demom  </h1> https://youtu.be/icoeDv9mBFk
+<h1>Project Demo  </h1> https://youtu.be/icoeDv9mBFk
